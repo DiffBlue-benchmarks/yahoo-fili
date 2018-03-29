@@ -131,6 +131,11 @@ Current
 
 ### Changed:
 
+- [Avoid casting to generate SimplifiedIntervalList](https://github.com/yahoo/fili/pull/658)
+    * Some downstream projects generated partial intervals as `ArrayList`, which cannot be cased to
+      `SimplifiedIntervalList` in places like `getPartialIntervalsWithDefault`. The result is a casting exception which
+      crashes downstream applications. Casting is replaced with a explicit `SimplifiedIntervalList` object creation.
+
 - [Add config to ignore partial/volatile intervals and cache everything in cache V2](https://github.com/yahoo/fili/pull/645)
     * In cache V2, user should be able to decide whether partial data or volatile data should be cached or not. This PR
       adds a config that allows the user to do this.
